@@ -8,6 +8,7 @@ import LoginScreen from "./components/auth/LoginScreen";
 // import HelloWorld from "./components/HelloWorld";
 
 // =======================================================================================
+// -------- Day 1 --------
 // let hello = "Hello in app component";
 // let number = 1;
 
@@ -36,6 +37,7 @@ import LoginScreen from "./components/auth/LoginScreen";
 // };
 
 // =======================================================================================
+// -------- Props and State --------
 // class App extends Component {
 //   state = {
 //     number: 0,
@@ -141,6 +143,7 @@ import LoginScreen from "./components/auth/LoginScreen";
 //   }
 // }
 // =======================================================================================
+// -------- Conditional Rendering --------
 class App extends Component {
   state = {
     isLoggedIn: false,
