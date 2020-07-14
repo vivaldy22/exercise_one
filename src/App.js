@@ -183,7 +183,8 @@ class App extends Component {
   }
 }
 */
-
+// =======================================================================================
+// -------- Adding Removing Cards (Components) --------
 const firstNames = [
   "Elizabeth",
   "Michaela",
