@@ -218,7 +218,8 @@ class App extends Component {
   };
 
   state = {
-    cards: [<MyCard contentData={this.data} />],
+    // cards: [<MyCard contentData={this.data} />],
+    cards: [this.data],
   };
 
   onAddBtnClick = () => {
@@ -232,9 +233,10 @@ class App extends Component {
 
     this.setState((prevState) => ({
       // cards: this.state.cards.concat(<MyCard contentData={data} />),
-      cards: [...this.state.cards, <MyCard contentData={data} />],
-      // cards: this.state.cards.slice(0, prevState.cards.length + 1),
+      // cards: [...this.state.cards, <MyCard contentData={data} />],
+      cards: [...this.state.cards, data],
     }));
+    console.log(this.state.cards);
   };
 
   onRmvFirstBtnClick = () => {
@@ -261,11 +263,14 @@ class App extends Component {
     });
   };
 
-  showCards = () => {
-    return this.state.cards;
-  };
+  // showCards = () => {
+  //   return this.state.cards;
+  // };
 
   render() {
+    const showCards = this.state.cards.map((data) => (
+      <MyCard contentData={data} />
+    ));
     return (
       <div>
         <button
@@ -297,7 +302,8 @@ class App extends Component {
           Remove All Card
         </button>
         <div className="ui four cards" style={{ margin: "0" }}>
-          {this.showCards()}
+          {/*{this.showCards()}*/}
+          {showCards}
         </div>
       </div>
     );
