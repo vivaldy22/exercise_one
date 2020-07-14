@@ -1,26 +1,137 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Component } from "react";
+import "./App.css";
+import UserCard from "./components/UserCard";
+import IncrementNumber from "./components/IncrementNumber";
+import DecrementNumber from "./components/DecrementNumber";
+// import HelloWorld from "./components/HelloWorld";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// let hello = "Hello in app component";
+// let number = 1;
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <span className="blue">{getNameSpan()}</span>
+//       <br />
+//       <span className="red">{hello}</span>
+//       <br />
+//       {isOne(number)}
+//     </div>
+//   );
+// }
+
+// const isOne = (number) => {
+//   return number === 1 ? (
+//     <span className="blue">This is 1</span>
+//   ) : (
+//     <span className="red">This is not 1</span>
+//   );
+// };
+//
+// const getNameSpan = () => {
+//   return "This is span in app component";
+// };
+
+// =======================================================================================
+class App extends Component {
+  state = {
+    number: 0,
+    data: {
+      name: "Vivaldy Andhira",
+      address: "Bandoeng",
+    },
+  };
+
+  functions = {
+    printFromApp: () => {
+      return <span>{"Hello from App.js"}</span>;
+    },
+    alertHello: (name) => {
+      alert(`Hello ${name}`);
+    },
+    incrementNumber: () => {
+      this.setState({
+        number: this.state.number + 1,
+      });
+    },
+    decrementNumber: () => {
+      if (this.state.number !== 0) {
+        this.setState({
+          number: this.state.number - 1,
+        });
+      } else {
+        alert("Can't decrement to a negative number");
+      }
+    },
+    addName: () => {
+      this.setState({
+        data: {
+          name: this.state.data.name + " A",
+          address: this.state.data.address,
+        },
+      });
+    },
+    resetName: () => {
+      this.setState({
+        data: {
+          name: "Vivaldy Andhira",
+          address: "Bandoeng",
+        },
+      });
+    },
+    changeColor: () => {
+      this.setState({});
+    },
+  };
+
+  // Component in react has 3 phases: 1. Mounting, 2. Updating, 3. Unmounting
+
+  // First Initialized
+  componentWillMount() {
+    console.log("Component will mount App");
+  }
+
+  // Executed after render(). Usually to take data from API like fetching data.. Take data first and then show it
+  componentDidMount() {
+    console.log("Component did mount App");
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("Component will receive props");
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log("Component will update App");
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("Component did update App");
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <UserCard
+          dataFromApp={this.state.data}
+          funcFromApp={this.functions}
+          number={this.state.number}
+        />
+        <IncrementNumber
+          number={this.state.number}
+          funcFromApp={this.functions}
+        />
+        <DecrementNumber
+          number={this.state.number}
+          funcFromApp={this.functions}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
