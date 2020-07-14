@@ -218,8 +218,8 @@ class App extends Component {
   };
 
   state = {
-    // cards: [<MyCard contentData={this.data} />],
-    cards: [this.data],
+    // cards: [<MyCard contentData={this.data} />], // part of 1st method
+    cards: [this.data], // part of 2nd method
   };
 
   onAddBtnClick = () => {
@@ -232,11 +232,12 @@ class App extends Component {
     };
 
     this.setState((prevState) => ({
+      // part of 1st method
       // cards: this.state.cards.concat(<MyCard contentData={data} />),
       // cards: [...this.state.cards, <MyCard contentData={data} />],
+      // part of 2nd method
       cards: [...this.state.cards, data],
     }));
-    console.log(this.state.cards);
   };
 
   onRmvFirstBtnClick = () => {
@@ -263,6 +264,7 @@ class App extends Component {
     });
   };
 
+  // part of 1st method
   // showCards = () => {
   //   return this.state.cards;
   // };
