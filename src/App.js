@@ -232,7 +232,7 @@ class App extends Component {
     };
 
     this.setState((prevState) => ({
-      // part of 1st method
+      // part of 1st method choose 1 of below (concat or ...)
       // cards: this.state.cards.concat(<MyCard contentData={data} />),
       // cards: [...this.state.cards, <MyCard contentData={data} />],
       // part of 2nd method
