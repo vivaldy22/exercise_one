@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import UserCard from "./components/UserCard";
-import IncrementNumber from "./components/IncrementNumber";
-import DecrementNumber from "./components/DecrementNumber";
-import HomeScreen from "./components/auth/HomeScreen";
-import LoginScreen from "./components/auth/LoginScreen";
+// import UserCard from "./components/UserCard";
+// import IncrementNumber from "./components/IncrementNumber";
+// import DecrementNumber from "./components/DecrementNumber";
+// import HomeScreen from "./components/auth/HomeScreen";
+// import LoginScreen from "./components/auth/LoginScreen";
+import MyCard from "./components/cards/MyCard";
 // import HelloWorld from "./components/HelloWorld";
 
 // =======================================================================================
@@ -148,6 +149,7 @@ class App extends Component {
 */
 // =======================================================================================
 // -------- Conditional Rendering --------
+/*
 class App extends Component {
   state = {
     isLoggedIn: false,
@@ -170,12 +172,133 @@ class App extends Component {
     // }
     return (
       <div>
-        {/*{currentScreen}*/}
+        {/!*{currentScreen}*!/}
         {this.state.isLoggedIn ? (
           <HomeScreen onLogout={this.onLogout} />
         ) : (
           <LoginScreen onAuth={this.onAuth} />
         )}
+      </div>
+    );
+  }
+}
+*/
+
+const firstNames = [
+  "Elizabeth",
+  "Michaela",
+  "Jane",
+  "Katy",
+  "Hana",
+  "Austin",
+  "Tony",
+  "Stanley",
+  "Barnaby",
+  "Mathew",
+];
+
+const lastNames = [
+  "Owens",
+  "Hammond",
+  "Solis",
+  "Rodgers",
+  "Molina",
+  "Mendez",
+  "Murray",
+  "Lloyd",
+  "Lawrence",
+  "Whitehouse",
+];
+
+class App extends Component {
+  data = {
+    name: "Vivaldy Andhira",
+    desc: "is a trainer at Enigma Camp",
+    friends: 22,
+  };
+
+  state = {
+    cards: [<MyCard contentData={this.data} />],
+  };
+
+  onAddBtnClick = () => {
+    const rand1 = Math.floor(Math.random() * firstNames.length);
+    const rand2 = Math.floor(Math.random() * lastNames.length);
+    const data = {
+      name: firstNames[rand1] + " " + lastNames[rand2],
+      desc: "is a trainer at Enigma Camp",
+      friends: Math.floor(1 + Math.random() * (50 - 1)),
+    };
+
+    this.setState((prevState) => ({
+      // cards: this.state.cards.concat(<MyCard contentData={data} />),
+      cards: [...this.state.cards, <MyCard contentData={data} />],
+      // cards: this.state.cards.slice(0, prevState.cards.length + 1),
+    }));
+  };
+
+  onRmvFirstBtnClick = () => {
+    const cardsFiltered = this.state.cards.filter((card) => {
+      return card !== this.state.cards[0];
+    });
+    this.setState({
+      cards: cardsFiltered,
+    });
+  };
+
+  onRmvLastBtnClick = () => {
+    const cardsFiltered = this.state.cards.filter((card) => {
+      return card !== this.state.cards[this.state.cards.length - 1];
+    });
+    this.setState({
+      cards: cardsFiltered,
+    });
+  };
+
+  onRmvAllBtnClick = () => {
+    this.setState({
+      cards: [],
+    });
+  };
+
+  showCards = () => {
+    return this.state.cards;
+  };
+
+  render() {
+    return (
+      <div>
+        <button
+          onClick={this.onAddBtnClick}
+          className="ui green button"
+          style={{ margin: "5px" }}
+        >
+          Add Card
+        </button>
+        <button
+          onClick={this.onRmvFirstBtnClick}
+          className="ui yellow button"
+          style={{ margin: "5px" }}
+        >
+          Remove First Card
+        </button>
+        <button
+          onClick={this.onRmvLastBtnClick}
+          className="ui orange button"
+          style={{ margin: "5px" }}
+        >
+          Remove Last Card
+        </button>
+        <button
+          onClick={this.onRmvAllBtnClick}
+          className="ui red button"
+          style={{ margin: "5px" }}
+        >
+          Remove All Card
+        </button>
+        <div className="ui four cards" style={{ margin: "0" }}>
+          {this.showCards()}
+        </div>
       </div>
     );
   }
