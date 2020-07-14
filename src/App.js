@@ -52,17 +52,22 @@ class App extends Component {
     },
     incrementNumber: () => {
       this.setState({
-        number: this.state.number + 1,
+        number:
+          this.state.number === "Tidak boleh negatif"
+            ? 0
+            : this.state.number + 1,
       });
     },
     decrementNumber: () => {
-      if (this.state.number !== 0) {
-        this.setState({
-          number: this.state.number - 1,
-        });
-      } else {
-        alert("Can't decrement to a negative number");
-      }
+      this.setState({
+        number:
+          this.state.number === 0
+            ? "Tidak boleh negatif"
+            : this.state.number === "Tidak boleh negatif"
+            ? "Tidak boleh negatif"
+            : this.state.number - 1,
+      });
+      // alert("Can't decrement to a negative number");
     },
     addName: () => {
       this.setState({
