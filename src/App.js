@@ -270,6 +270,7 @@ class App extends Component {
   // };
 
   render() {
+    // part of 2nd method
     const showCards = this.state.cards.map((data) => (
       <MyCard contentData={data} />
     ));
