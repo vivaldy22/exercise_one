@@ -213,6 +213,7 @@ const lastNames = [
 
 class App extends Component {
   data = {
+    id: 0,
     name: "Vivaldy Andhira",
     desc: "is a trainer at Enigma Camp",
     friends: 22,
@@ -221,12 +222,14 @@ class App extends Component {
   state = {
     // cards: [<MyCard contentData={this.data} />], // part of 1st method
     cards: [this.data], // part of 2nd method
+    ids: 1,
   };
 
   onAddBtnClick = () => {
     const rand1 = Math.floor(Math.random() * firstNames.length);
     const rand2 = Math.floor(Math.random() * lastNames.length);
     const data = {
+      id: this.state.ids,
       name: firstNames[rand1] + " " + lastNames[rand2],
       desc: "is a trainer at Enigma Camp",
       friends: Math.floor(1 + Math.random() * (50 - 1)),
@@ -237,7 +240,9 @@ class App extends Component {
       // cards: this.state.cards.concat(<MyCard contentData={data} />),
       // cards: [...this.state.cards, <MyCard contentData={data} />],
       // part of 2nd method
-      cards: [...this.state.cards, data],
+      // cards: [...this.state.cards, data],
+      cards: this.state.cards.concat(data),
+      ids: this.state.ids + 1,
     }));
   };
 
@@ -265,6 +270,17 @@ class App extends Component {
     });
   };
 
+  onRmvThisBtnClick = (id) => {
+    this.state.cards.forEach((card, i) => {
+      if (this.state.cards[i].id === id) {
+        this.state.cards.splice(i, 1);
+      }
+    });
+    this.setState({
+      cards: this.state.cards,
+    });
+  };
+
   // part of 1st method
   // showCards = () => {
   //   return this.state.cards;
@@ -272,8 +288,8 @@ class App extends Component {
 
   render() {
     // part of 2nd method
-    const showCards = this.state.cards.map((data) => (
-      <MyCard contentData={data} />
+    const showCards = this.state.cards.map((data, i) => (
+      <MyCard key={i} contentData={data} onRmvBtn={this.onRmvThisBtnClick} />
     ));
     return (
       <div>

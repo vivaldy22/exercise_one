@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class MyCard extends Component {
   render() {
-    let { name, desc, friends } = this.props.contentData;
+    let { id, name, desc, friends } = this.props.contentData;
+    let { onRmvBtn } = this.props;
     return (
       <div className="ui card">
         <div className="content">
@@ -14,8 +15,19 @@ class MyCard extends Component {
         <div className="extra content">
           <a>
             <i className="user icon" />
-            {friends} Friends
+            {friends} Friends {id}
           </a>
+        </div>
+        <div className="extra content" style={{ textAlign: "center" }}>
+          <button
+            onClick={() => {
+              onRmvBtn(id);
+            }}
+            className="ui red button"
+            style={{ margin: "5px" }}
+          >
+            Remove This Card
+          </button>
         </div>
       </div>
     );
