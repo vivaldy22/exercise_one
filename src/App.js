@@ -6,6 +6,7 @@ import "./App.css";
 // import HomeScreen from "./components/auth/HomeScreen";
 // import LoginScreen from "./components/auth/LoginScreen";
 import MyCard from "./components/cards/MyCard";
+import Button from "./components/button/Button";
 // import HelloWorld from "./components/HelloWorld";
 
 // =======================================================================================
@@ -293,34 +294,23 @@ class App extends Component {
     ));
     return (
       <div>
-        <button
-          onClick={this.onAddBtnClick}
-          className="ui green button"
-          style={{ margin: "5px" }}
-        >
-          Add Card
-        </button>
-        <button
+        <Button onClick={this.onAddBtnClick} color="green" text="Add Card" />
+        <Button
           onClick={this.onRmvFirstBtnClick}
-          className="ui yellow button"
-          style={{ margin: "5px" }}
-        >
-          Remove First Card
-        </button>
-        <button
+          color="yellow"
+          text="Remove First Card"
+        />
+        <Button
           onClick={this.onRmvLastBtnClick}
-          className="ui orange button"
-          style={{ margin: "5px" }}
-        >
-          Remove Last Card
-        </button>
-        <button
+          color="orange"
+          text="Remove Last Card"
+        />
+        <Button
           onClick={this.onRmvAllBtnClick}
-          className="ui red button"
-          style={{ margin: "5px" }}
-        >
-          Remove All Card
-        </button>
+          color="red"
+          text="Remove All Cards"
+        />
+
         <div className="ui four cards" style={{ margin: "0" }}>
           {/*{this.showCards()}*/}
           {showCards}
