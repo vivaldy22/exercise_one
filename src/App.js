@@ -28,6 +28,12 @@ class App extends Component {
         // ids: this.state.ids + 1,
         isCardExist: true,
       });
+    } else if (this.state.inputName === "") {
+      this.setState({
+        cards: [],
+        isCardExist: false,
+        ids: 0,
+      });
     } else {
       this.state.cards.splice(0, 1, data);
       this.setState({

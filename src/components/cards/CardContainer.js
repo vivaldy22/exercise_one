@@ -3,13 +3,9 @@ import MyCard from "./MyCard";
 
 class CardContainer extends Component {
   render() {
-    const { cards } = this.props;
+    const { cards, onRmvThisBtnClick } = this.props;
     const showCards = cards.map((data, i) => (
-      <MyCard
-        key={i}
-        contentData={data}
-        onRmvBtn={this.handleRmvThisBtnClick}
-      />
+      <MyCard key={i} contentData={data} onRmvBtn={onRmvThisBtnClick} />
     ));
 
     return (

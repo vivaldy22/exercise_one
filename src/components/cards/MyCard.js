@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class MyCard extends Component {
   render() {
-    let { id, name, desc, friends } = this.props.contentData;
+    let { id, name, desc } = this.props.contentData;
     let { onRmvBtn } = this.props;
     return (
       <div className="ui card">
