@@ -15,7 +15,7 @@ class MyCard extends Component {
         <div className="extra content">
           <a>
             <i className="user icon" />
-            {friends} Friends {id}
+            Programmer
           </a>
         </div>
         <div className="extra content" style={{ textAlign: "center" }}>

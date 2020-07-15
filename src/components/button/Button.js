@@ -7,7 +7,7 @@ class Button extends Component {
       <button
         onClick={onClick}
         className={"ui button " + color}
-        style={{ margin: "5px" }}
+        style={{ marginLeft: "10px" }}
       >
         {text}
       </button>
