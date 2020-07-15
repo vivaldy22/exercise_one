@@ -44,6 +44,12 @@ class App extends Component {
     });
   };
 
+  handleRmvAllBtnClick = () => {
+    this.setState({
+      todos: [],
+    });
+  };
+
   render() {
     const showTodos = this.state.todos.map((data, i) => (
       <InputContainer
@@ -57,7 +63,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <MainInputContainer
-          onClick={this.handleAddBtnClick}
+          onAddBtnClick={this.handleAddBtnClick}
+          onRemoveBtnClick={this.handleRmvAllBtnClick}
           onTxtChange={this.handleTxtChange}
           valueMainTxt={this.state.inputTodo}
         />

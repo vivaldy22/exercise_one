@@ -4,11 +4,17 @@ import Button from "../button/Button";
 
 class MainInputContainer extends Component {
   render() {
-    const { onClick, onTxtChange, valueMainTxt } = this.props;
+    const {
+      onAddBtnClick,
+      onRemoveBtnClick,
+      onTxtChange,
+      valueMainTxt,
+    } = this.props;
     return (
       <div>
         <InputText onTxtChange={onTxtChange} value={valueMainTxt} />
-        <Button onClick={onClick} color="green" text="Add ToDo" />
+        <Button onClick={onAddBtnClick} color="green" text="Add ToDo" />
+        <Button onClick={onRemoveBtnClick} color="red" text="Remove All" />
       </div>
     );
   }
