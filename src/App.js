@@ -35,6 +35,7 @@ class App extends Component {
         cards: this.state.cards,
       });
     }
+
     console.log(this.state);
   };
 
@@ -44,6 +45,7 @@ class App extends Component {
         this.state.cards.splice(i, 1);
       }
     });
+
     this.setState({
       cards: this.state.cards,
     });
@@ -51,6 +53,7 @@ class App extends Component {
 
   handleTxtChange = (event) => {
     const name = event.target.name;
+
     this.setState({
       ...this.state,
       [name]: event.target.value,
