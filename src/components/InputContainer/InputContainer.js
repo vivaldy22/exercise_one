@@ -6,13 +6,12 @@ class InputContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
       todo: this.props.value,
       isEditClicked: false,
     };
   }
 
-  handleEditBtnClick = () => {
+  handleEditSaveBtnClick = () => {
     this.setState({
       isEditClicked: !this.state.isEditClicked,
     });
@@ -31,15 +30,22 @@ class InputContainer extends Component {
         <InputText
           disabled={!this.state.isEditClicked}
           value={this.state.todo}
-          onChange={this.handleTxtChange}
+          onTxtChange={this.handleTxtChange}
         />
-        {id}
         {this.state.isEditClicked ? (
-          <Button color="blue" text="Save" onClick={this.handleEditBtnClick} />
+          <Button
+            color="blue"
+            text="Save"
+            onClick={this.handleEditSaveBtnClick}
+          />
         ) : (
-          <Button color="blue" text="Edit" onClick={this.handleEditBtnClick} />
+          <Button
+            color="blue"
+            text="Edit"
+            onClick={this.handleEditSaveBtnClick}
+          />
         )}
-        <Button color="red" text="Delete" onClick={(id) => onRmvBtn(id)} />
+        <Button color="red" text="Delete" onClick={() => onRmvBtn(id)} />
       </div>
     );
   }
