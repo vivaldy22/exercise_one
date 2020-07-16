@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import "./css/style.css";
 import Header from "./components/header/Header";
-import TextInput from "./components/input/TextInput";
 import NumpadCalc from "./components/numpad/NumpadCalc";
 import CalcDisplay from "./components/display/CalcDisplay";
 
@@ -35,7 +34,7 @@ class App extends Component {
     try {
       this.setState({
         // eslint-disable-next-line no-eval
-        result: (eval(this.state.result) || "") + "",
+        result: String(eval(this.state.result) || ""),
       });
     } catch (e) {
       this.setState({
