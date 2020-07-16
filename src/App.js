@@ -1,75 +1,75 @@
 import React, { Component } from "react";
 import "./App.css";
-import MyCard from "./components/cards/MyCard";
-import Button from "./components/button/Button";
+import "./css/style.css";
+import Header from "./components/header/Header";
+import TextInput from "./components/input/TextInput";
+import NumpadCalc from "./components/numpad/NumpadCalc";
+import CalcDisplay from "./components/display/CalcDisplay";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
-      ids: 0,
+      result: "",
     };
   }
 
-  onAddBtnClick = () => {
-    const data = {
-      id: this.state.ids,
-      name: "name",
-      desc: "is a trainer at Enigma Camp",
-    };
-
-    this.setState(() => ({
-      // cards: [...this.state.cards, data],
-      cards: this.state.cards.concat(data),
-      ids: this.state.ids + 1,
-    }));
+  handleNumButtonClick = (e) => {
+    const val = e.target.value;
+    if (val === "CE") {
+      this.setState({
+        result: this.state.result.slice(0, -1),
+      });
+    } else if (val === "C" || (val == 0 && this.state.result.length === 0)) {
+      this.setState({
+        result: "",
+      });
+    } else {
+      this.setState({
+        result: this.state.result + val,
+      });
+    }
   };
 
-  onRmvFirstBtnClick = () => {
-    const cardsFiltered = this.state.cards.filter((card) => {
-      return card !== this.state.cards[0];
-    });
-    this.setState({
-      cards: cardsFiltered,
-    });
+  handleResButtonClick = () => {
+    try {
+      this.setState({
+        // eslint-disable-next-line no-eval
+        result: (eval(this.state.result) || "") + "",
+      });
+    } catch (e) {
+      this.setState({
+        result: "",
+      });
+    }
   };
 
-  onRmvLastBtnClick = () => {
-    const cardsFiltered = this.state.cards.filter((card) => {
-      return card !== this.state.cards[this.state.cards.length - 1];
-    });
-    this.setState({
-      cards: cardsFiltered,
-    });
+  checkInput = (input) => {
+    return input.match(/[a-zA-Z ~`!@#$^&_=,<>?:;"'\[\]{}|\\]+/gm);
   };
 
-  onRmvAllBtnClick = () => {
-    this.setState({
-      cards: [],
-    });
-  };
-
-  onRmvThisBtnClick = (id) => {
-    this.state.cards.forEach((card, i) => {
-      if (this.state.cards[i].id === id) {
-        this.state.cards.splice(i, 1);
-      }
-    });
-    this.setState({
-      cards: this.state.cards,
-    });
+  handleTxtChange = (e) => {
+    if (!this.checkInput(e.target.value)) {
+      this.setState({
+        result: e.target.value,
+      });
+    }
   };
 
   render() {
-    const showCards = this.state.cards.map((data, i) => (
-      <MyCard key={i} contentData={data} onRmvBtn={this.onRmvThisBtnClick} />
-    ));
+    console.log(this.state.result);
     return (
-      <div>
-        <Button onClick={this.onAddBtnClick} color="green" text="Add Card" />
-        <div className="ui four cards" style={{ margin: "0" }}>
-          {showCards}
+      <div className="App">
+        <Header />
+        <div className="calc-container">
+          <CalcDisplay
+            res={this.state.result}
+            onTxtChange={this.handleTxtChange}
+          />
+          <NumpadCalc
+            onClickNum={this.handleNumButtonClick}
+            onClickRes={this.handleResButtonClick}
+          />
         </div>
       </div>
     );

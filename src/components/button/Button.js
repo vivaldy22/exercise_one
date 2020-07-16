@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 class Button extends Component {
   render() {
-    const { onClick, color, text } = this.props;
+    const { onClick, text } = this.props;
     return (
       <button
         onClick={onClick}
-        className={"ui button " + color}
-        style={{ margin: "5px" }}
+        className={"ui button"}
+        value={text}
+        style={{ margin: "5px", width: "80px" }}
       >
         {text}
       </button>
