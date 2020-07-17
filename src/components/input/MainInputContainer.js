@@ -11,16 +11,18 @@ class MainInputContainer extends Component {
       valueMainTxt,
     } = this.props;
     return (
-      <form>
-        <InputText onTxtChange={onTxtChange} value={valueMainTxt} />
-        <Button
-          type="submit"
-          onClick={onAddBtnClick}
-          color="green"
-          text="Add ToDo"
-        />
+      <div className="main-input-container">
+        <form>
+          <InputText onTxtChange={onTxtChange} value={valueMainTxt} />
+          <Button
+            type="submit"
+            onClick={onAddBtnClick}
+            color="green"
+            text="Add ToDo"
+          />
+        </form>
         <Button onClick={onRemoveBtnClick} color="red" text="Remove All" />
-      </form>
+      </div>
     );
   }
 }

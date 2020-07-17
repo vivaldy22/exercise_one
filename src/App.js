@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./css/style.css";
 import Header from "./components/header/Header";
 import InputContainer from "./components/InputContainer/InputContainer";
 import MainInputContainer from "./components/input/MainInputContainer";
@@ -33,8 +34,21 @@ class App extends Component {
     event.preventDefault();
   };
 
+  handleSaveBtnClick = (id, data) => {
+    this.state.todos.forEach((each, i) => {
+      if (each.id === id) {
+        this.state.todos.splice(i, 1, data);
+      }
+    });
+
+    this.setState({
+      todos: this.state.todos,
+    });
+    console.log(this.state.todos);
+  };
+
   handleRmvBtnClick = (id) => {
-    this.state.todos.forEach((todo, i) => {
+    this.state.todos.forEach((each, i) => {
       if (this.state.todos[i].id === id) {
         this.state.todos.splice(i, 1);
       }
@@ -58,6 +72,7 @@ class App extends Component {
         id={data.id}
         value={data.todo}
         onRmvBtn={this.handleRmvBtnClick}
+        onSaveBtn={this.handleSaveBtnClick}
       />
     ));
     return (

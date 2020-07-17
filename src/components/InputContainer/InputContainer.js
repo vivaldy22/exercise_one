@@ -11,7 +11,7 @@ class InputContainer extends Component {
     };
   }
 
-  handleEditSaveBtnClick = () => {
+  handleEditBtnClick = () => {
     this.setState({
       isEditClicked: !this.state.isEditClicked,
     });
@@ -24,7 +24,7 @@ class InputContainer extends Component {
   };
 
   render() {
-    const { onRmvBtn, id } = this.props;
+    const { onRmvBtn, onSaveBtn, id } = this.props;
     return (
       <div>
         <InputText
@@ -36,14 +36,13 @@ class InputContainer extends Component {
           <Button
             color="blue"
             text="Save"
-            onClick={this.handleEditSaveBtnClick}
+            onClick={() => {
+              onSaveBtn(id, this.state.todo);
+              this.handleEditBtnClick();
+            }}
           />
         ) : (
-          <Button
-            color="blue"
-            text="Edit"
-            onClick={this.handleEditSaveBtnClick}
-          />
+          <Button color="blue" text="Edit" onClick={this.handleEditBtnClick} />
         )}
         <Button color="red" text="Delete" onClick={() => onRmvBtn(id)} />
       </div>
