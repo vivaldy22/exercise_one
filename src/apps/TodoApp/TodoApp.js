@@ -28,6 +28,7 @@ class TodoApp extends Component {
     this.setState(() => ({
       todos: this.state.todos.concat(data),
       ids: this.state.ids + 1,
+      inputTodo: "",
     }));
     event.preventDefault();
   };
