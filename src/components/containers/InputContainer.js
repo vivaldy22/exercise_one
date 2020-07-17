@@ -37,6 +37,7 @@ class InputContainer extends Component {
           <Button
             color="blue"
             text="Save"
+            disabled={!this.state.todo}
             onClick={() => {
               if (this.state.todo) {
                 onSaveBtn(id, this.state.todo);

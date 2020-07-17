@@ -20,6 +20,7 @@ class MainInputContainer extends Component {
             onClick={onAddBtnClick}
             color="green"
             text="Add ToDo"
+            disabled={!valueMainTxt}
           />
         </form>
         <Button onClick={onRemoveBtnClick} color="red" text="Remove All" />
