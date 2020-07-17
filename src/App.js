@@ -19,9 +19,17 @@ class App extends Component {
       this.setState({
         result: this.state.result.slice(0, -1),
       });
-    } else if (val === "C" || (val == 0 && this.state.result.length === 0)) {
+    } else if (val === "C") {
       this.setState({
         result: "",
+      });
+    } else if (val == 0 && this.state.result[0] == 0) {
+      this.setState({
+        result: "0",
+      });
+    } else if (this.state.result[0] == 0) {
+      this.setState({
+        result: val,
       });
     } else {
       this.setState({
