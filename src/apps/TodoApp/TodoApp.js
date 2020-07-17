@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import InputContainer from "../InputContainer/InputContainer";
-import Header from "../header/Header";
-import MainInputContainer from "../input/MainInputContainer";
+import InputContainer from "../../components/containers/InputContainer";
+import Header from "../../components/header/Header";
+import MainInputContainer from "../../components/containers/MainInputContainer";
 
 class TodoApp extends Component {
   constructor(props) {
@@ -46,7 +46,6 @@ class TodoApp extends Component {
     this.setState({
       todos: this.state.todos,
     });
-    console.log(this.state.todos);
   };
 
   handleRmvBtnClick = (id) => {

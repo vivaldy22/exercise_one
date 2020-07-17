@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InputText from "./InputText";
+import InputText from "../input/InputText";
 import Button from "../button/Button";
 
 class MainInputContainer extends Component {
@@ -10,8 +10,9 @@ class MainInputContainer extends Component {
       onTxtChange,
       valueMainTxt,
     } = this.props;
+
     return (
-      <div className="main-input-container">
+      <div className="input-container">
         <form>
           <InputText onTxtChange={onTxtChange} value={valueMainTxt} />
           <Button
