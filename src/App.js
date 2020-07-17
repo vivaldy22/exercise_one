@@ -20,7 +20,7 @@ class App extends Component {
     });
   };
 
-  handleAddBtnClick = () => {
+  handleAddBtnClick = (event) => {
     const data = {
       id: this.state.ids,
       todo: this.state.inputTodo,
@@ -30,6 +30,7 @@ class App extends Component {
       todos: this.state.todos.concat(data),
       ids: this.state.ids + 1,
     }));
+    event.preventDefault();
   };
 
   handleRmvBtnClick = (id) => {
