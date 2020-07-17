@@ -6,15 +6,9 @@ class InputContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: "",
+      todo: this.props.value,
       isEditClicked: false,
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      todo: this.props.value,
-    });
   }
 
   handleEditBtnClick = () => {
