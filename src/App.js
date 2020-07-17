@@ -4,6 +4,10 @@ import "./css/style.css";
 import Header from "./components/header/Header";
 import NumpadCalc from "./components/numpad/NumpadCalc";
 import CalcDisplay from "./components/display/CalcDisplay";
+import Calculator from "./components/calculator/Calculator";
+
+const regexOp = /[+\-*/%.]+/gm;
+const regexLetterSymbol = /[a-zA-Z ~`!@#$^&_=,<>?:;"'\[\]{}|\\]+/gm;
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +16,10 @@ class App extends Component {
       result: "",
     };
   }
+
+  checkInput = (input) => {
+    return input.match(regexLetterSymbol);
+  };
 
   handleNumButtonClick = (e) => {
     const val = e.target.value;
@@ -23,19 +31,47 @@ class App extends Component {
       this.setState({
         result: "",
       });
-    } else if (val == 0 && this.state.result[0] == 0) {
+    } else if (val == 0 && this.state.result.length === 0) {
+      console.log("1");
       this.setState({
         result: "0",
       });
-    } else if (this.state.result[0] == 0) {
+    } else if (
+      (val.match(regexOp) && this.state.result.length === 0) ||
+      (this.state.result[0] == 0 && val.match(/[()]/gm))
+    ) {
+      console.log("2");
       this.setState({
         result: val,
       });
+    } else if (
+      val.match(regexOp) &&
+      this.state.result[this.state.result.length - 1].match(regexOp)
+    ) {
+      console.log("3");
+      this.setState({
+        ...this.state.result,
+      });
+    } else if (
+      (this.state.result[0] == 0 && val.match(regexOp)) ||
+      (this.state.result[0] == 0 &&
+        this.state.result[1].match(regexOp) &&
+        val == 0)
+    ) {
+      console.log("4");
+      this.setState({
+        result: this.state.result + val,
+      });
     } else {
+      console.log("5");
       this.setState({
         result: this.state.result + val,
       });
     }
+    // console.log("MASUK 6");
+    // this.setState({
+    //   result: val,
+    // });
   };
 
   handleResButtonClick = () => {
@@ -44,15 +80,11 @@ class App extends Component {
         // eslint-disable-next-line no-eval
         result: String(eval(this.state.result) || ""),
       });
-    } catch (e) {
+    } catch (err) {
       this.setState({
         result: "",
       });
     }
-  };
-
-  checkInput = (input) => {
-    return input.match(/[a-zA-Z ~`!@#$^&_=,<>?:;"'\[\]{}|\\]+/gm);
   };
 
   handleTxtChange = (e) => {
@@ -64,20 +96,25 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.result);
     return (
       <div className="App">
         <Header />
-        <div className="calc-container">
-          <CalcDisplay
-            res={this.state.result}
-            onTxtChange={this.handleTxtChange}
-          />
-          <NumpadCalc
-            onClickNum={this.handleNumButtonClick}
-            onClickRes={this.handleResButtonClick}
-          />
-        </div>
+        <Calculator
+          res={this.state.result}
+          onTxtChange={this.handleTxtChange}
+          onClickNum={this.handleNumButtonClick}
+          onClickRes={this.handleResButtonClick}
+        />
+        {/*<div className="calc-container">*/}
+        {/*  <CalcDisplay*/}
+        {/*    res={this.state.result}*/}
+        {/*    onTxtChange={this.handleTxtChange}*/}
+        {/*  />*/}
+        {/*  <NumpadCalc*/}
+        {/*    onClickNum={this.handleNumButtonClick}*/}
+        {/*    onClickRes={this.handleResButtonClick}*/}
+        {/*  />*/}
+        {/*</div>*/}
       </div>
     );
   }
