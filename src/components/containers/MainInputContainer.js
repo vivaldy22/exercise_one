@@ -9,6 +9,7 @@ class MainInputContainer extends Component {
       onRemoveBtnClick,
       onTxtChange,
       valueMainTxt,
+      todosLen,
     } = this.props;
 
     return (
@@ -23,7 +24,12 @@ class MainInputContainer extends Component {
             disabled={!valueMainTxt}
           />
         </form>
-        <Button onClick={onRemoveBtnClick} color="red" text="Remove All" />
+        <Button
+          onClick={onRemoveBtnClick}
+          color="red"
+          text="Remove All"
+          disabled={!todosLen}
+        />
       </div>
     );
   }

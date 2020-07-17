@@ -39,12 +39,8 @@ class InputContainer extends Component {
             text="Save"
             disabled={!this.state.todo}
             onClick={() => {
-              if (this.state.todo) {
-                onSaveBtn(id, this.state.todo);
-                this.handleEditBtnClick();
-              } else {
-                alert("Input cannot be empty");
-              }
+              onSaveBtn(id, this.state.todo);
+              this.handleEditBtnClick();
             }}
           />
         ) : (

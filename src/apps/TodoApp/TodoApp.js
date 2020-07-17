@@ -20,19 +20,15 @@ class TodoApp extends Component {
   };
 
   handleAddBtnClick = (event) => {
-    if (this.state.inputTodo) {
-      const data = {
-        id: this.state.ids,
-        todo: this.state.inputTodo,
-      };
+    const data = {
+      id: this.state.ids,
+      todo: this.state.inputTodo,
+    };
 
-      this.setState(() => ({
-        todos: this.state.todos.concat(data),
-        ids: this.state.ids + 1,
-      }));
-    } else {
-      alert("Input cannot be empty");
-    }
+    this.setState(() => ({
+      todos: this.state.todos.concat(data),
+      ids: this.state.ids + 1,
+    }));
     event.preventDefault();
   };
 
@@ -85,6 +81,7 @@ class TodoApp extends Component {
           onRemoveBtnClick={this.handleRmvAllBtnClick}
           onTxtChange={this.handleTxtChange}
           valueMainTxt={this.state.inputTodo}
+          todosLen={this.state.todos.length}
         />
         {showTodos}
       </div>
