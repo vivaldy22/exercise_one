@@ -11,6 +11,7 @@ class TextInput extends Component {
         type={type}
         value={value}
         onChange={onChange}
+        // readOnly
       />
     );
   }

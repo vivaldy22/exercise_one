@@ -13,6 +13,12 @@ class NumpadCalc extends Component {
           <Button text="CE" onClick={onClickNum} />
         </div>
         <div>
+          <Button text="xⁿ" onClick={onClickNum} />
+          <Button text="e" onClick={onClickNum} />
+          <Button text="π" onClick={onClickNum} />
+          <Button text="%" onClick={onClickNum} />
+        </div>
+        <div>
           <Button text="7" onClick={onClickNum} />
           <Button text="8" onClick={onClickNum} />
           <Button text="9" onClick={onClickNum} />

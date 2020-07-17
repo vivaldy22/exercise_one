@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import "./css/style.css";
 import Header from "./components/header/Header";
-import NumpadCalc from "./components/numpad/NumpadCalc";
-import CalcDisplay from "./components/display/CalcDisplay";
 import Calculator from "./components/calculator/Calculator";
 
 const regexOp = /[+\-*/%.]+/gm;
@@ -31,8 +29,24 @@ class App extends Component {
       this.setState({
         result: "",
       });
+    } else if (val === "e") {
+      this.setState({
+        result: Math.E,
+      });
+    } else if (val === "π") {
+      this.setState({
+        result: Math.PI,
+      });
+    } else if (val === "xⁿ") {
+      this.setState({
+        result: this.state.result + "**",
+      });
+    } else if (val === "%") {
+      this.handleResButtonClick();
+      this.setState({
+        result: this.state.result / 100,
+      });
     } else if (val == 0 && this.state.result.length === 0) {
-      console.log("1");
       this.setState({
         result: "0",
       });
@@ -40,7 +54,6 @@ class App extends Component {
       (val.match(regexOp) && this.state.result.length === 0) ||
       (this.state.result[0] == 0 && val.match(/[()]/gm))
     ) {
-      console.log("2");
       this.setState({
         result: val,
       });
@@ -58,20 +71,14 @@ class App extends Component {
         this.state.result[1].match(regexOp) &&
         val == 0)
     ) {
-      console.log("4");
       this.setState({
         result: this.state.result + val,
       });
     } else {
-      console.log("5");
       this.setState({
         result: this.state.result + val,
       });
     }
-    // console.log("MASUK 6");
-    // this.setState({
-    //   result: val,
-    // });
   };
 
   handleResButtonClick = () => {
