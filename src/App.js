@@ -105,16 +105,6 @@ class App extends Component {
           onClickNum={this.handleNumButtonClick}
           onClickRes={this.handleResButtonClick}
         />
-        {/*<div className="calc-container">*/}
-        {/*  <CalcDisplay*/}
-        {/*    res={this.state.result}*/}
-        {/*    onTxtChange={this.handleTxtChange}*/}
-        {/*  />*/}
-        {/*  <NumpadCalc*/}
-        {/*    onClickNum={this.handleNumButtonClick}*/}
-        {/*    onClickRes={this.handleResButtonClick}*/}
-        {/*  />*/}
-        {/*</div>*/}
       </div>
     );
   }
