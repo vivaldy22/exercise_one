@@ -22,15 +22,19 @@ class App extends Component {
   };
 
   handleAddBtnClick = (event) => {
-    const data = {
-      id: this.state.ids,
-      todo: this.state.inputTodo,
-    };
+    if (this.state.inputTodo) {
+      const data = {
+        id: this.state.ids,
+        todo: this.state.inputTodo,
+      };
 
-    this.setState(() => ({
-      todos: this.state.todos.concat(data),
-      ids: this.state.ids + 1,
-    }));
+      this.setState(() => ({
+        todos: this.state.todos.concat(data),
+        ids: this.state.ids + 1,
+      }));
+    } else {
+      alert("Input cannot be empty");
+    }
     event.preventDefault();
   };
 
