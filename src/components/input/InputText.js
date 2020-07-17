@@ -4,6 +4,7 @@ import { Input } from "semantic-ui-react";
 class InputText extends Component {
   render() {
     const { disabled, onTxtChange, value } = this.props;
+
     return (
       <Input
         type="text"

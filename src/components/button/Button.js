@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class Button extends Component {
   render() {
     const { onClick, color, text, type } = this.props;
+
     return (
       <button
         type={type}

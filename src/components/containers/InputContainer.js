@@ -25,6 +25,7 @@ class InputContainer extends Component {
 
   render() {
     const { onRmvBtn, onSaveBtn, id } = this.props;
+
     return (
       <div>
         <InputText
@@ -37,8 +38,12 @@ class InputContainer extends Component {
             color="blue"
             text="Save"
             onClick={() => {
-              onSaveBtn(id, this.state.todo);
-              this.handleEditBtnClick();
+              if (this.state.todo) {
+                onSaveBtn(id, this.state.todo);
+                this.handleEditBtnClick();
+              } else {
+                alert("Input cannot be empty");
+              }
             }}
           />
         ) : (

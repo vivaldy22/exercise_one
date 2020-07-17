@@ -76,6 +76,7 @@ class TodoApp extends Component {
         onSaveBtn={this.handleSaveBtnClick}
       />
     ));
+
     return (
       <div className="App">
         <Header />
